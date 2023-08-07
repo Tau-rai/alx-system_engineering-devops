@@ -1,0 +1,2 @@
+#!/bin/bash
+find . -type -iname "*.gif" -print0 | xargs -0 du -b | sort -n
