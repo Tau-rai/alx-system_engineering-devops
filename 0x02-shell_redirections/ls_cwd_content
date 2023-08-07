@@ -1,0 +1,15 @@
+total 0
+-rw-r--r-- 1 taurai taurai  39 Aug  7 12:49 '\*\'Best
+drwxr-xr-x 1 taurai taurai 512 Aug  7 12:56 .
+drwxr-xr-x 1 taurai taurai 512 Aug  7 11:40 ..
+-rwxr--r-- 1 taurai taurai  32 Aug  7 11:55 0-hello_world
+-rwxr--r-- 1 taurai taurai  27 Aug  7 12:20 1-confused_smiley
+-rwxr--r-- 1 taurai taurai  28 Aug  7 12:23 2-hellofile
+-rwxr--r-- 1 taurai taurai  39 Aug  7 12:25 3-twofiles
+-rwxr--r-- 1 taurai taurai  35 Aug  7 12:28 4-lastlines
+-rwxr--r-- 1 taurai taurai  35 Aug  7 12:29 5-firstlines
+-rwxr--r-- 1 taurai taurai  40 Aug  7 12:41 6-third_line
+-rwxr--r-- 1 taurai taurai  76 Aug  7 12:49 7-file
+-rwxr--r-- 1 taurai taurai  36 Aug  7 12:55 8-cwd_state
+-rw-r--r-- 1 taurai taurai  39 Aug  7 11:41 README.md
+-rw-r--r-- 1 taurai taurai   0 Aug  7 12:56 ls_cwd_content
