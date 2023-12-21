@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# This script displays file in the current directory
+
+for file in *
+do
+    if [ -f "$file" ]; then
+        fname=$(basename "${file#*-}")
+        echo "$fname"
+    fi
+done
