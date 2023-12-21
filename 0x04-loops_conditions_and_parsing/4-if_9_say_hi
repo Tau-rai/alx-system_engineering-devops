@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School" 10 times, but
+#+ for the 9th iteration, displays Best School nd the Hi
+
+a=1
+while [ $a -lt 10 ]
+do
+    echo "Best School"
+    ((a++))
+    if [ $a -eq 9 ]
+    then
+        echo "Best School"
+        echo "Hi"
+    fi 
+done
