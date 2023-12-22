@@ -6,7 +6,7 @@ termHandler() {
     exit 0
 }
 
-trap 'termHndler' SIGTERM
+trap 'termHandler' SIGTERM
 
 while true
 do
