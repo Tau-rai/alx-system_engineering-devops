@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This scrpits stops the task 4 process
+
+pkill -f "4-to_infity_and_beyond"
