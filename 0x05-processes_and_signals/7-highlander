@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script uses the SIGTERM signal
+
+termHandler() {
+    echo "I am invincible!!!"
+    exit 0
+}
+
+trap 'termHndler' SIGTERM
+
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 # This scrpits stops the task 4 process
 
-pkill -f "4-to_infity_and_beyond"
+touch stop_flag_file
+
+while pgrep -f "4-to_infity_and_beyond" >/dev/null
+do
+    sleep 1
+done
+
+rm stop_flag_file

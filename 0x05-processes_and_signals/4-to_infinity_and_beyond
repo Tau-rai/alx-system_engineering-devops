@@ -3,6 +3,12 @@
 
 while true
 do
+    if [ -e stop_flag_file ]
+    then
+        rm stop_flag_file
+        exit 0
+    fi
+    
     echo "To infinity and beyond"
     sleep 2
 done
