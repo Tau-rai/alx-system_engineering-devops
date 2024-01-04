@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This csript displays listening ports
+
+ss -l -p -n
