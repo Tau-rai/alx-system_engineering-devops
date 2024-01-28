@@ -1,22 +1,6 @@
-Sure, here's how you can structure the content as a README file:
+# Web Infrastucture Design
 
-```markdown
-# Table of Contents
-
-1. [Network Basics](#network-basics)
-2. [Server Concept](#server-concept)
-3. [Web Server Concept](#web-server-concept)
-4. [DNS Concept](#dns-concept)
-5. [Load Balancer Concept](#load-balancer-concept)
-6. [Monitoring Concept](#monitoring-concept)
-7. [What is a Database](#what-is-a-database)
-8. [Web Server vs. App Server](#web-server-vs-app-server)
-9. [DNS Record Types](#dns-record-types)
-10. [Single Point of Failure](#single-point-of-failure)
-11. [Avoiding Downtime when Deploying New Code](#avoiding-downtime-when-deploying-new-code)
-12. [High Availability Cluster (Active-Active/Active-Passive)](#high-availability-cluster-active-activeactive-passive)
-13. [What is HTTPS](#what-is-https)
-14. [What is a Firewall](#what-is-a-firewall)
+This readme file explains the concepts covered in this repository.
 
 ## Network Basics
 
@@ -73,4 +57,3 @@ HTTPS (Hypertext Transfer Protocol Secure) is a secure version of HTTP. It encry
 ## What is a Firewall
 
 A firewall is a network security device or software that monitors and controls incoming and outgoing network traffic. It acts as a barrier between a trusted internal network and untrusted external networks, filtering and blocking unauthorized access.
-```
