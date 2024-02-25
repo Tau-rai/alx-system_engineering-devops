@@ -1,13 +1,13 @@
 # makes changes to the client configuration file
 
-file { '/home/tau_rai/.ssh/config':
-    ensure  => file,
-    owner   => 'ubuntu',
-    group   => 'ubuntu',
-    mode    => '0600',
-    content => "
-     Host *
-        IdentityFile ~/.ssh/school
-        PasswordAuthentication no
-    ",
+file_line { 'Password Authentication':
+    ensure => 'present',
+    path   => '/etc/ssh/sshd_config',
+    line   =>  'PasswordAuthentication no',
+}
+
+file_line { 'Identity file':
+    ensure => 'present',
+    path   => '/etc/ssh/ssh_config',
+    line   => 'IdentityFile ~/.ssh/school',
 }
