@@ -2,8 +2,8 @@
 
 file { '/home/tau_rai/.ssh/config':
     ensure  => file,
-    owner   => 'tau_rai',
-    group   => 'tau_rai',
+    owner   => 'ubuntu',
+    group   => 'ubuntu',
     mode    => '0600',
     content => "
      Host *
