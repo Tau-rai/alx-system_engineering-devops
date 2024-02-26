@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Installs nginx on web server
+
+# update package lists for upgrades
+sudo apt-get update
+
+# Install nginx
+sudo apt-get install -y nginx
+
+# start Nginx
+sudo service nginx start
+
+# create a simple html file
+echo "Hello World!" > /var/www/html/index.html
+
+# restart nginx
+sudo service nginx restart
