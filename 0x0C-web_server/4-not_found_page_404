@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Installs nginx on web server and configures custom 404 page
+
+# Update package lists for upgrades
+sudo apt-get update
+
+# Install nginx
+sudo apt-get install -y nginx
+
+# Start Nginx
+sudo service nginx start
+
+# Create a simple HTML file
+echo "Hello World!" > /var/www/html/index.html
+
+# Replace a line with multiple lines using sed
+sed -i 's/Hello World!/This is the first new line\nSecond replacement line\nThird replacement line/g' /var/www/html/index.html
+
+# Configure nginx custom 404 page
+sudo bash -c 'cat > /var/www/html/404.html' << EOF
+<!DOCTYPE html>
+<html>
+<head>
+    <title>404 Not Found</title>
+</head>
+<body>
+    <h1>404 Not Found</h1>
+    <p>Ceci n'est pas une page</p>
+</body>
+</html>
+EOF
+
+# Configure nginx to use the custom 404 page
+sudo bash -c 'cat > /etc/nginx/sites-available/default' << EOF
+server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        root /var/www/html;
+        index index.html index.htm;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /var/www/html;
+        internal;
+    }
+}
+EOF
+
+# Restart nginx
+sudo service nginx restart
