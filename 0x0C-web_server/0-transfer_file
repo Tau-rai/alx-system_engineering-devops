@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Transfers a file from our client to a server
+
+if [ "$#" -ne 4 ]; then
+    echo "Usage: 0-transfer_file PATH_TO_FILE USERNAME PATH_TO_SSH_KEY"
+    exit 1
+fi
+
+# variables
+SOURCE_FILE_PATH="$1"
+SERVER_IP="$2"
+USERNAME="$3"
+SSH_KEY_PATH="$4"
+
+scp -i "${SSH_KEY_PATH}" -o StrictHostKeyChecking=no "${SOURCE_FILE_PATH}" "${USERNAME}"@"${SERVER_IP}":~/ 
