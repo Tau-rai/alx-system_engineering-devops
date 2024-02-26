@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# fix server error
+
+sudo apt-get update
+
+sudo apt-get install -y nginx
+
+sudo service nginx start
+
+echo 'Hello Holberton' > /usr/share/nginx/html/index.html
+
+sudo service nginx restart
