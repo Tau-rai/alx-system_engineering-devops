@@ -1,16 +1,5 @@
 # installs and configures a Nginx web server with puppet
 
-unless defined(Class['nginx']) {
-    # install nginx module if not already installed
-    package { 'nginx_module':
-        ensure   => 'installed',
-        provider => 'puppet_gem',
-    }
-}
-
-include nginx
-
-
 class { 'nginx': }
 
 nginx::resource::server { 'default':
