@@ -15,7 +15,9 @@ sudo service nginx start
 echo "Hello World!" > /var/www/html/index.html
 
 # configure nginx to redirect /redirect_me to another page
-sudo sed -i 's|server {|&\n    location = /redirect_me {\n        return 301 http://taurai.tech/index.html;\n    }|' /etc/nginx/sites-available/default
+file="/etc/nginx/sites-available/default"
+new_string="location /redirect_me { return 301 https://google.com; }"
+sed -i "s/server_name _;/$new_string/" $file 
 
 # restart nginx
 sudo service nginx restart

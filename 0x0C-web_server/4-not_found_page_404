@@ -13,20 +13,16 @@ sudo service nginx start
 # Create a simple HTML file
 echo "Hello World!" > /var/www/html/index.html
 
-# create a custom 404 page
-echo '<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Not Found</title>
-</head>
-<body>
-    <h1>404 - Page Not Found</h1>
-    <p>Ceci n\'est pas une page</p>
-</body>
-</html>' | sudo tee /usr/share/nginx/html/404.html > /dev/null
+# configure nginx to redirect /redirect_me to another page
+file="/etc/nginx/sites-available/default"
+new_string="location /redirect_me { return 301 https://google.com; }"
+sed -i "s/server_name _;/$new_string/" $file 
 
-# configure Nginx to use the custom 404 page
-sudo sed -i '/server_name _;/a \\n  error_page 404 /404.html;' /etc/nginx/sites-available/default
+# create a custom 404 page
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+# configure nginx to use the custom 404 page
+echo "error_page 404 /404.html;" >> /etc/nginx/sites-available/default
 
 # restart nginx
 sudo service nginx restart
