@@ -28,4 +28,3 @@ echo "server {
 # restart nginx
 sudo service nginx restart
 
-
