@@ -15,8 +15,8 @@ echo "Hello World!" > /var/www/html/index.html
 
 # configure nginx to redirect /redirect_me to another page
 file="/etc/nginx/sites-available/default"
-new_string="location /redirect_me { return 301 https://google.com; }"
-sudo sed -i "s/server_name _;/a $new_string" $file 
+new_string="location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; }"
+sudo sed -i "/server_name _;/a \    $new_string" $file 
 
 # create a custom 404 page
 echo "Ceci n'est pas une page" > /var/www/html/404.html
