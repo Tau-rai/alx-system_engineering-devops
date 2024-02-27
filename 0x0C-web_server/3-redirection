@@ -15,12 +15,9 @@ sudo service nginx start
 echo "Hello World!" > /var/www/html/index.html
 
 # configure nginx to redirect /redirect_me to another page
-sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
-# new_string="location /redirect_me { return 301 https://google.com; }"
-sudo sed -i "/^}/i \
-    location /redirect_me { \
-        return 301 https:\/\/google.com\/; \
-    }" /etc/nginx/sites-available/default 
+# sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.backup
+
+sudo sed -i '24i\    rewrite ^/redirect_me https://www.google.com/ permanent;' /etc/nginx/sites-available/default 
 
 # restart nginx
 sudo service nginx restart
