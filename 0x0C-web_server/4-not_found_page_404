@@ -24,9 +24,5 @@ echo "Ceci n'est pas une page" > /var/www/html/404.html
 # configure nginx to use the custom 404 page
 echo "error_page 404 /404.html;" >> /etc/nginx/sites-available/default
 
-# Add location blocks for /xyz and /xyzfoo
-echo "location /xyz {}" >> /etc/nginx/sites-available/default
-echo "location /xyzfoo { return 200 'Ceci n\'est pas une page'; }" >> /etc/nginx/sites-available/default
-
 # restart nginx
 sudo service nginx restart
