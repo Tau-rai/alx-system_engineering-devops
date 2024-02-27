@@ -14,18 +14,8 @@ sudo service nginx start
 # create a simple html file
 echo "Hello World!" > /var/www/html/index.html
 
-# replace a line with multiple line using sed
-sed -i 's/Hello World!/This is the first new line\nSecond replacement line\nThird replacement line/g' /var/www/html/index.html
-
 # configure nginx to redirect /redirect_me to another page
-echo 'server {
-    listen 80;
-    server_name localhost;
-
-    location = /redirect_me {
-        return 301 http://taurai.tech/index.html
-    }
-}' | sudo tee /etc/nginx/sites-available/default
+sudo sed -i 's|server {|&\n    location = /redirect_me {\n        return 301 http://taurai.tech/index.html;\n    }|' /etc/nginx/sites-available/default
 
 # restart nginx
 sudo service nginx restart
