@@ -22,7 +22,7 @@ echo "Hello World!" > /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
 # configure nginx to use the custom 404 page
-echo "error_page 404 /404.html;" | sudo tee /etc/nginx/sites-available/default
+sudo sed -i '/error_page 404/c\    error_page 404 /404.html;' /etc/nginx/sites-available/default
 
 # restart nginx
 sudo service nginx restart
