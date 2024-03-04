@@ -7,15 +7,13 @@ sudo apt-get update
 # Install nginx
 sudo apt-get install -y nginx
 
-# variables
-NGINX_CONFIG="/etc/nginx/sites-available/default"
-SERVER_NAME=$(hostname)
+HOSTNAME=$(hostname)
 
-# define custom header
-CUSTOM_HEADER="add_header X-Served-By '$SERVER_NAME';"
+# create a configuration snippet to add the custom header
+echo "add_header X-Served-By $HOSTNAME;" > /etc/nginx/snippets/custom_header.conf
 
 # use sed to add custom header to config file
-sudo sed -i "/server_name _;/a\ \ \ \ $CUSTOM_HEADER" $NGINX_CONFIG
+sudo sed -i '/server_name _;/a include snippets/custom_header.conf;' /etc/nginx/sites-available/default
 
 # test configuration and restart server
 sudo nginx -t
