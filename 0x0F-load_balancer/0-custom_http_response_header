@@ -2,20 +2,20 @@
 # Configures Nginx so that its HTTP response contains a custom header
 
 # update package lists for upgrades
-sudo apt-get update
+sudo apt-get update 
 
-# Install nginx
+# Install nginx if not installed
 sudo apt-get install -y nginx
 
 HOSTNAME=$(hostname)
 
-# create a configuration snippet to add the custom header
-echo "add_header X-Served-By $HOSTNAME;" > /etc/nginx/snippets/custom_header.conf
-
 # use sed to add custom header to config file
-sudo sed -i '/server_name _;/a include snippets/custom_header.conf;' /etc/nginx/sites-available/default
+sudo sed -i "/location \/ {/a\        add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
 
 # test configuration and restart server
 sudo nginx -t
 
-sudo service nginx restart
+if [ $? -eq 0 ]
+then
+    sudo service nginx restart
+fi
