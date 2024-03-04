@@ -13,23 +13,12 @@ file {'/var/www/html/index.html':
   content => 'Hello World!'
 }
 
-$hostname = $facts['networking']['fqdn']
-
-file_line { 'nginx_custom_header':
-  path  => '/etc/nginx/sites-available/default',
-  line  => "        add_header X-Served-By ${hostname};",
-  match => '^        location / {$',
-  after => '^        location / {$',
-}
-
-exec { 'test_nginx_config':
-  command     => 'nginx -t',
-  refreshonly => true,
-  subscribe   => File_line['nginx_custom_header'],
+exec {'cutsom header':
+  command  => 'sed -i "/location \/ {/a\        add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default',
+  provider => 'shell'
 }
 
   service { 'nginx':
-    ensure    => running,
-    enable    => true,
-    subscribe => Exec['test_nginx_config'],
+    ensure  => running,
+    require => Package['nginx']
   }
