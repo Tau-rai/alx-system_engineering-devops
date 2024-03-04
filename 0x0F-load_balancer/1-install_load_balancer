@@ -2,11 +2,12 @@
 # This script installs and configures HAProxy
 
 # Update package lists for upgrades
-sudo apt-get update 
+sudo apt-get update -y
 
 # Enable a dedicated PPA
 sudo apt-get install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.8
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.8
+sudo apt-get update -y
 
 # Install HAProxy
 sudo apt-get install -y haproxy=2.8.\*
@@ -16,35 +17,16 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
 # Create a new configuration file
 echo "
-global
-    log /dev/log    local0
-    log /dev/log    local1 notice
-    chroot /var/lib/haproxy
-    stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
-    stats timeout 30s
-    user haproxy
-    group haproxy
-    daemon
-
-defaults
-    log     global
-    mode    http
-    option  httplog
-    option  dontlognull
-    timeout connect 5000
-    timeout client  50000
-    timeout server  50000
-
 frontend http_front
    bind *:80
-   stats uri /haproxy?stats
+   mode http
    default_backend http_back
 
 backend http_back
    balance roundrobin
    server 512863-web-01 34.204.95.239:80 check
    server 512863-web-02 54.234.17.205:80 check
-" | sudo tee /etc/haproxy/haproxy.cfg > /dev/null
+" | sudo tee -a /etc/haproxy/haproxy.cfg
 
 # Restart HAProxy to apply changes
 sudo service haproxy restart
