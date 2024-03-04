@@ -2,15 +2,15 @@
 # This script installs and configures HAProxy
 
 # Update package lists for upgrades
-sudo apt-get update -y
+sudo apt-get -y update 
 
 # Enable a dedicated PPA
-sudo apt-get install --no-install-recommends software-properties-common
+sudo apt-get install software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.8
-sudo apt-get update -y
+sudo apt-get -y update
 
 # Install HAProxy
-sudo apt-get install -y haproxy=2.8.\*
+sudo apt-get install -y haproxy
 
 # Backup the original configuration file
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
