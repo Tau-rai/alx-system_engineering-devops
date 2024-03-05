@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script installs and configures a Nginx server
+
+# update system
+sudo apt-get -y update
+
+# install Nginx and start the server
+sudo apt-get install nginx -y
+service nginx start
+
+# check if server is running
+service nginx status
