@@ -16,7 +16,13 @@ if netstat -tuln | grep ':80 ' > /dev/null; then
     echo "Nginx listening on port 80"
 else
     echo "Nginx is not listening on port 80"
-    echo "Changing Nginx configuration to listen on port 80"
-    sudo sed -i 's/listen [0-9]*;/listen 80;/' /etc/nginx/nginx.conf
-    sudo nginx -t && echo "Configuration test successful. Reloading Nginx..." && sudo service nginx restart
 fi
+
+# remove the default Nginx configuration file 
+sudo rm /etc/nginx/sites-enabled/default
+
+# create a symbolic link to the default Nginx configuration file 
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+# restart the Nginx service to apply the changes
+sudo service nginx restart
