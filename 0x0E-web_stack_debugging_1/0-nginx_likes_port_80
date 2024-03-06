@@ -1,12 +1,22 @@
 #!/usr/bin/env bash
 # This script installs and configures a Nginx server
 
+# check if nginx is installed and properly configured
+sudo nginx -t
+
 # update system
 sudo apt-get -y update
 
 # install Nginx and start the server
 sudo apt-get install nginx -y
 service nginx start
+
+# check if Nginx is listening on port 80
+if netstat -tuln | grep ':80 ' > /dev/null; then
+    echo "Nginx listening on port 80"
+else
+    echo "Nginx is not listening on port 80"
+fi
 
 # check if server is running
 service nginx status
