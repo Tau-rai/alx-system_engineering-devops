@@ -20,6 +20,3 @@ else
     sudo sed -i 's/listen [0-9]*;/listen 80;/' /etc/nginx/nginx.conf
     sudo nginx -t && echo "Configuration test successful. Reloading Nginx..." && sudo service nginx restart
 fi
-
-# check if server is running
-service nginx status
