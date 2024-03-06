@@ -16,6 +16,9 @@ if netstat -tuln | grep ':80 ' > /dev/null; then
     echo "Nginx listening on port 80"
 else
     echo "Nginx is not listening on port 80"
+    echo "Changing Nginx configuration to listen on port 80"
+    sudo sed -i 's/listen [0-9]*;/listen 80;/' /etc/nginx/nginx.conf
+    sudo nginx -t && echo "Configuration test successful. Reloading Nginx..." && sudo service nginx restart
 fi
 
 # check if server is running
