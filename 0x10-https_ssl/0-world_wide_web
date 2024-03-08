@@ -2,7 +2,7 @@
 # This script displays information about subdomains
 
 # Function to check and print domain info
-check_domain() {
+domain_lookup() {
     local domain=$1
     local subdomain=$2
     local ip_address=$(nslookup "$subdomain"."$domain" | awk '/^Name:/ {print $2} /Address:/ {print $2}' | tail -n1)
