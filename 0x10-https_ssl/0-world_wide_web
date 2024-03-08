@@ -17,9 +17,9 @@ subdomain=$2
 if [[ -z "$subdomain" ]]; then
     # If no subdomain is provided, check for default subdomains
     for sub in www lb-01 web-01 web-02; do
-        check_domain "$domain" $sub
+        domain_lookup "$domain" $sub
     done
 else
     # If subdomain is provided, check only for that
-    check_domain "$domain" "$subdomain"
+    domain_lookup "$domain" "$subdomain"
 fi
