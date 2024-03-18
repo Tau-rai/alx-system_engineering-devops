@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# This script configures a container to run nginx as ngix user
+# and listens to all active IPs on port 8080
+
+# Variables
+SERVICE="nginx"
+USER="nginx"
+GROUP="nginx"
+
+SERVICE_FILE="/lib/systemd/system/$SERVICE.service"
+NGINX_CONF="/etc/nginx/nginx.conf"
+
+# check if service file exists
+if [ ! -f "$SERVICE_FILE" ]; then
+    echo "Service file $SERVICE_FILE does not exist"
+    exit 1
+fi
+
+# check if the nginx user exists
+if ! id -u "$USER" >/dev/null 2>&1; then
+    echo "User $USER does not exist"
+    exit 1
+fi
+
+# check if the nginx groups exixts
+if ! grep -q "^$GROUP:" /etc/group; then
+    echo "Group $GROUP does not exist"
+    exit 1
+fi
+
+# stop the nginx service
+sudo systemctl stop "$SERVICE"
+
+# change ownership of the nginx directories
+sudo chown -R "$USER:$GROUP" /var/log/nginx /var/lib/nginx
+
+# modify nginx configuration to listen on all IPs on port 8080
+sudo sed -i 's/listen\s*80;/listen 8080;/g' "$NGINX_CONF"
+sudo sed -i '/listen\s*8080;/a listen [::]:8080;' "$NGINX_CONF"
+
+# reload systemd daemon and restart nginx
+sudo systemctl daemon-reload
+sudo systemctl start "$SERVICE"
+
+echo "$SERVICE is up running as $USER:$GROUP and listening to all IPs on port 8080"
