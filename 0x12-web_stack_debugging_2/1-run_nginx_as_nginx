@@ -29,7 +29,10 @@ if ! grep -q "^$GROUP:" /etc/group; then
 fi
 
 # stop the nginx service
-sudo systemctl stop "$SERVICE"
+sudo service "$SERVICE" stop 
+
+# Add the User and Group lines to the service file
+sudo sed -i "/\[Service\]/a User=$USER\nGroup=$GROUP" "$SERVICE_FILE"
 
 # change ownership of the nginx directories
 sudo chown -R "$USER:$GROUP" /var/log/nginx /var/lib/nginx
@@ -39,7 +42,7 @@ sudo sed -i 's/listen\s*80;/listen 8080;/g' "$NGINX_CONF"
 sudo sed -i '/listen\s*8080;/a listen [::]:8080;' "$NGINX_CONF"
 
 # reload systemd daemon and restart nginx
-sudo systemctl daemon-reload
-sudo systemctl start "$SERVICE"
+sudo service "$SERVICE" reload
+sudo service "$SERVICE" start 
 
 echo "$SERVICE is up running as $USER:$GROUP and listening to all IPs on port 8080"
