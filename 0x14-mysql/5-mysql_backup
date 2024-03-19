@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# This script generates a MySQL dump and creates a compressed archive out of it
+
+#check if an argument was provided
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <password>"
+    exit 1
+fi
+
+# get the password from the command line args
+password=$1
+
+# dump all mysql databases
+if ! mysqldump -uroot -p"$password" --all-databases > backup.sql; then
+    echo "Error: Failed to create a mysql dump"
+    exit 1
+fi
+
+# compress the backup
+a_time=$(date +'%d-%m-%Y')
+archive_name="${a_time}.tar.gz"
+
+if ! tar -czvf "$archive_name" backup.sql; then
+    echo "Error: Failed to create a compressed archive"
+    exit 1
+fi
+
+echo "MySQL dump and compressed archive successfully created"
