@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # This script configures a container to run nginx as nginx user and listens to all active IPs on port 8080
-sudo sed -i 's/user  nginx;/user  nginx;/' /etc/nginx/nginx.conf
+sudo sed -i 's/user  www-data;/user  nginx;/' /etc/nginx/nginx.conf
 sudo sed -i 's/listen       80;/listen       8080;/' /etc/nginx/conf.d/default.conf
-sudo service nginx restart
+chmod 644 /etc/nginx/nginx.conf
+sudo -u nginx service nginx restart
