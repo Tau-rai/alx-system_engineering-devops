@@ -21,21 +21,22 @@ def to_csv(EMPLOYEE_ID):
     user = json.loads(users_data.text)
 
     # specify the keys to select
-    user_keys = ['id', 'username']
-    data_keys = ['completed', 'title']
+    user_keys = ['username']
+    data_keys = ['userId', 'completed', 'title']
+    data_keys.insert(1, user_keys[0])
 
     # create a csv file and write data into it
     with open(f'{EMPLOYEE_ID}.csv', 'w', newline='') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
 
         # write the header
-        writer.writerow(data_keys)
+        # writer.writerow(data_keys)
 
         # write the data rows
         for row in data:
             writer.writerow(
                 [str(user.get(key, row.get(key, '')))
-                    for key in user_keys + data_keys])
+                    for key in data_keys])
 
 
 if __name__ == "__main__":
