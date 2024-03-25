@@ -22,7 +22,7 @@ def progress_list(EMPLOYEE_ID):
     TOTAL_NUMBER_OF_TASKS = len(tasks)
     NUMBER_OF_DONE_TASKS = len([todo for todo in tasks if todo['completed']])
 
-    fstring = "Employee {} is done with ({}/{})".format(
+    fstring = "Employee {} is done with tasks({}/{})".format(
         EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS)
     print(fstring)
     for task in tasks:
