@@ -21,7 +21,7 @@ def to_csv(EMPLOYEE_ID):
     user = json.loads(users_data.text)
 
     # specify the keys to select
-    user_keys = ['id', 'name']
+    user_keys = ['id', 'username']
     data_keys = ['completed', 'title']
 
     # create a csv file and write data into it
