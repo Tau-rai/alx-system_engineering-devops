@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-# This module has a script that uses a REST API to gather data
-
+"""
+This module has a script that uses a REST API to gather data
+"""
 
 import json
 import requests
